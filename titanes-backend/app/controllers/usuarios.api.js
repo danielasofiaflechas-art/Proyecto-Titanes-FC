@@ -38,3 +38,25 @@ export const eliminarUsuario = (req, res) => {
         });
     });
 };
+
+// Buscar un solo usuario por ID
+export const obtenerUsuarioPorId = (req, res) => {
+    const { id } = req.params;
+    const sql = "SELECT id, nombre, rol, usuario FROM usuarios WHERE id = ?";
+    db.query(sql, [id], (err, result) => {
+        if (err) return res.status(500).json({ error: err.message });
+        if (result.length === 0) return res.status(404).json({ message: "Usuario no encontrado" });
+        res.json(result[0]);
+    });
+};
+
+// Actualizar un usuario existente
+export const actualizarUsuario = (req, res) => {
+    const { id } = req.params;
+    const { nombre, rol, usuario } = req.body;
+    const sql = "UPDATE usuarios SET nombre = ?, rol = ?, usuario = ? WHERE id = ?";
+    db.query(sql, [nombre, rol, usuario, id], (err, result) => {
+        if (err) return res.status(500).json({ error: err.message });
+        res.json({ success: true, message: "¡Titán actualizado correctamente!" });
+    });
+};

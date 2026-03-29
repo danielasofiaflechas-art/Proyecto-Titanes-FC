@@ -9,5 +9,5 @@ app.use(express.json());
 app.use("/api", apiRutas);
 
 app.listen(3000, () => {
-    console.log("📡 Backend de Titanes corriendo en http://localhost:3000");
+    console.log("Backend de Titanes corriendo en http://localhost:3000");
 });

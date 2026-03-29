@@ -71,21 +71,17 @@
                 }
             });
 
-            // Si la respuesta es exitosa (status 200-299)
             if (respuesta.ok) {
                 const data = await respuesta.json();
                 if (data.success) {
                     alert("¡Titán eliminado!");
-                    window.location.reload(); // Recarga la tabla
+                    window.location.reload(); 
                 }
             } else {
                 alert("El servidor encontró un problema al eliminar.");
             }
 
         } catch (error) {
-            // Si entra aquí es porque hubo un problema de red, 
-            // PERO como tú dijiste que en phpMyAdmin SÍ se borra, 
-            // vamos a recargar la página de todos modos para actualizar la tabla.
             console.log("Error de red detectado, refrescando tabla...");
             window.location.reload(); 
         }

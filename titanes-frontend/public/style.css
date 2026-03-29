@@ -1,7 +1,7 @@
 :root {
-    --primario: #ff0000; /* Rojo Titán */
-    --oscuro-bg: #000000; /* Negro Fondo */
-    --oscuro-card: #121212; /* Negro Tarjeta */
+    --primario: #ff0000; 
+    --oscuro-bg: #000000; 
+    --oscuro-card: #121212; 
     --texto: #ffffff;
 }
 
