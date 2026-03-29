@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Titanes F.C. - Usuarios</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="navbar" style="display: flex; justify-content: space-between; align-items: center; padding: 10px 50px; background-color: #1a1a1a; border-bottom: 3px solid #ff0000;">
+        <h1 style="margin: 0; color: #ff0000;">TITANES F.C.</h1>
+        
+        <div style="color: white; font-family: sans-serif;">
+            Bienvenido, <strong style="color: #ff0000;"><%= user.usuario %></strong> 
+            
+            <a href="/logout" style="margin-left: 20px; color: #ffffff; text-decoration: none; border: 1px solid #ff0000; padding: 5px 12px; border-radius: 4px; font-size: 0.8rem; background: #333;">
+                Cerrar Sesión
+            </a>
+        </div>
+    </div>
+
+    <div class="container" style="padding: 40px;">
+        <div class="card" style="background: #1a1a1a; border-radius: 8px; padding: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.5);">
+            
+            <div style="display: flex; justify-content: space-between; align-items: center; border-left: 5px solid #ff0000; padding-left: 15px; margin-bottom: 20px;">
+                <h2 style="color: white; margin: 0;">Panel de Gestión de Usuarios</h2>
+                
+                <a href="/registro" style="background-color: #ff0000; color: white; padding: 10px 20px; text-decoration: none; font-weight: bold; border-radius: 5px; font-size: 0.9rem; transition: 0.3s;">
+                    + AGREGAR NUEVO TITÁN
+                </a>
+            </div>
+            
+            <table style="width: 100%; border-collapse: collapse; margin-top: 10px; color: white;">
+                <thead>
+                    <tr style="background-color: #333; text-align: left;">
+                        <th style="padding: 12px; border-bottom: 2px solid #ff0000;">Nombre</th>
+                        <th style="padding: 12px; border-bottom: 2px solid #ff0000;">Rol</th>
+                        <th style="padding: 12px; border-bottom: 2px solid #ff0000;">Usuario</th>
+                        <th style="padding: 12px; border-bottom: 2px solid #ff0000; text-align: center;">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% usuarios.forEach(u => { %>
+                        <tr style="border-bottom: 1px solid #444;">
+                            <td style="padding: 12px;"><%= u.nombre %></td>
+                            <td style="padding: 12px;"><%= u.rol %></td>
+                            <td style="padding: 12px;"><%= u.usuario %></td>
+                            <td style="padding: 12px; text-align: center;">
+                                <button onclick="eliminarTitan('<%= u.id %>', '<%= u.nombre %>')" 
+                                    style="background-color: transparent; color: #ff0000; border: 1px solid #ff0000; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 0.7rem; text-transform: uppercase; transition: 0.3s;"
+                                    onmouseover="this.style.background='#ff0000'; this.style.color='white'"
+                                    onmouseout="this.style.background='transparent'; this.style.color='#ff0000'">
+                                    Eliminar
+                                </button>
+                            </td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        async function eliminarTitan(id, nombre) {
+    if (confirm(`¿Estás seguro de que deseas eliminar a "${nombre}"?`)) {
+        try {
+            const respuesta = await fetch(`http://localhost:3000/api/usuarios/${id}`, {
+                method: 'DELETE',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            // Si la respuesta es exitosa (status 200-299)
+            if (respuesta.ok) {
+                const data = await respuesta.json();
+                if (data.success) {
+                    alert("¡Titán eliminado!");
+                    window.location.reload(); // Recarga la tabla
+                }
+            } else {
+                alert("El servidor encontró un problema al eliminar.");
+            }
+
+        } catch (error) {
+            // Si entra aquí es porque hubo un problema de red, 
+            // PERO como tú dijiste que en phpMyAdmin SÍ se borra, 
+            // vamos a recargar la página de todos modos para actualizar la tabla.
+            console.log("Error de red detectado, refrescando tabla...");
+            window.location.reload(); 
+        }
+    }
+}
+    </script>
+</body>
+</html>

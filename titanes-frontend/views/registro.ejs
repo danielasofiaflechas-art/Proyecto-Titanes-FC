@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Titanes F.C. - Registro</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body style="background-color: #0a0a0a; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; font-family: sans-serif;">
+
+    <div style="background: #1a1a1a; padding: 40px; border-radius: 12px; border-left: 5px solid #ff0000; width: 400px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+        
+        <h2 style="color: #ff0000; text-align: center; text-transform: uppercase; letter-spacing: 2px;">Nuevo Titán</h2>
+        <p style="color: #888; text-align: center; margin-bottom: 30px;">Registrar un nuevo miembro en la base de datos</p>
+
+        <form action="/registro" method="POST">
+            <label style="color: #aaa; font-size: 0.8rem;">NOMBRE COMPLETO</label>
+            <input type="text" name="nombre" placeholder="Ej: Juan Pérez" required 
+                style="width: 100%; padding: 12px; margin: 8px 0 20px 0; background: #252525; border: 1px solid #333; color: white; border-radius: 5px; box-sizing: border-box;">
+
+            <label style="color: #aaa; font-size: 0.8rem;">ROL / POSICIÓN</label>
+            <input type="text" name="rol" placeholder="Ej: Administrador o Jugador" required 
+                style="width: 100%; padding: 12px; margin: 8px 0 20px 0; background: #252525; border: 1px solid #333; color: white; border-radius: 5px; box-sizing: border-box;">
+
+            <label style="color: #aaa; font-size: 0.8rem;">USUARIO DE ACCESO</label>
+            <input type="text" name="usuario" placeholder="Ej: jperez2024" required 
+                style="width: 100%; padding: 12px; margin: 8px 0 20px 0; background: #252525; border: 1px solid #333; color: white; border-radius: 5px; box-sizing: border-box;">
+
+            <label style="color: #aaa; font-size: 0.8rem;">CONTRASEÑA</label>
+            <input type="password" name="clave" placeholder="••••••••" required 
+                style="width: 100%; padding: 12px; margin: 8px 0 25px 0; background: #252525; border: 1px solid #333; color: white; border-radius: 5px; box-sizing: border-box;">
+
+            <button type="submit" style="width: 100%; padding: 14px; background: #ff0000; color: white; border: none; font-weight: bold; border-radius: 5px; cursor: pointer; text-transform: uppercase; transition: 0.3s;">
+                Guardar Titán
+            </button>
+
+            <a href="/usuarios" style="display: block; text-align: center; color: #666; margin-top: 20px; text-decoration: none; font-size: 0.85rem;">
+                ← Cancelar y volver a la tabla
+            </a>
+        </form>
+    </div>
+
+</body>
+</html>

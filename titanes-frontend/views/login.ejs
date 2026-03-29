@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Titanes F.C. - Login</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body style="display: flex; justify-content: center; align-items: center; height: 100vh; background-color: #0a0a0a; margin: 0;">
+
+    <div class="card-login" style="background: #1a1a1a; padding: 40px; border-radius: 12px; border-top: 5px solid #ff0000; width: 350px; box-shadow: 0 10px 25px rgba(0,0,0,0.5);">
+        
+        <h1 style="color: #ff0000; text-align: center; text-transform: uppercase; margin-bottom: 10px;">TITANES F.C.</h1>
+        <p style="color: #a0a0a0; text-align: center; font-size: 0.9rem; margin-bottom: 30px;">Área Administrativa</p>
+
+        <% if (typeof error !== 'undefined' && error == '1') { %>
+            <div style="background: rgba(255, 0, 0, 0.1); border: 1px solid #ff0000; color: #ff0000; padding: 12px; margin-bottom: 20px; border-radius: 6px; text-align: center; font-family: sans-serif; font-size: 0.85rem;">
+                <strong>¡ACCESO DENEGADO!</strong> <br> Usuario o clave incorrectos.
+            </div>
+        <% } %>
+
+        <% if (typeof error !== 'undefined' && error == 'connection') { %>
+            <div style="background: rgba(255, 165, 0, 0.1); border: 1px solid #ffa500; color: #ffa500; padding: 12px; margin-bottom: 20px; border-radius: 6px; text-align: center; font-family: sans-serif; font-size: 0.85rem;">
+                <strong>SISTEMA:</strong> <br> El servidor de datos no responde.
+            </div>
+        <% } %>
+
+        <form action="/login" method="POST">
+            <div style="margin-bottom: 20px;">
+                <label style="color: #a0a0a0; font-size: 0.8rem; display: block; margin-bottom: 5px;">USUARIO</label>
+                <input type="text" name="usuario" placeholder="Ingrese su usuario" required 
+                    style="width: 100%; padding: 12px; background: #252525; border: 1px solid #333; color: white; border-radius: 5px; box-sizing: border-box;">
+            </div>
+
+            <div style="margin-bottom: 30px;">
+                <label style="color: #a0a0a0; font-size: 0.8rem; display: block; margin-bottom: 5px;">CONTRASEÑA</label>
+                <input type="password" name="clave" placeholder="••••••••" required 
+                    style="width: 100%; padding: 12px; background: #252525; border: 1px solid #333; color: white; border-radius: 5px; box-sizing: border-box;">
+            </div>
+
+            <button type="submit" class="btn-titán" 
+                style="width: 100%; padding: 14px; background: #ff0000; color: white; border: none; font-weight: bold; border-radius: 5px; cursor: pointer; text-transform: uppercase; transition: 0.3s;">
+                Ingresar al Panel
+            </button>
+        </form>
+
+    </div>
+
+</body>
+</html>
